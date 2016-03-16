@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+
+  <table ng-controller="MainController as vm">
+    <tr ng-repeat="character in vm.characters">
+      <td>{{ character.name }}</td>
+      <td>{{ character.species }}</td>
+      <td>{{ character.score }}</td>
+      <td><button ng-click="vm.vote(character)">Votar</button></td>
+    </tr>
+  </table>
+
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app', [])
+
+    app.controller('MainController', function () {
+      var vm = this
+
+      vm.characters = [
+        {
+          name: 'Frodo',
+          species: 'Hobbit',
+          score: 0
+        },
+        {
+          name: 'Sam',
+          species: 'Hobbit',
+          score: 0
+        },
+        {
+          name: 'Gandalf',
+          species: 'Maiar',
+          score: 0
+        }
+      ]
+
+      vm.vote = function (character) {
+        character.score += 1
+      }
+
+    })
+  </script>
+</body>
+</html>

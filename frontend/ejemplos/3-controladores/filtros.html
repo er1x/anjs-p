@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+
+  <table ng-controller="MainController as main">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="char in main.characters | orderBy : 'score'">
+        <td>{{ char.name }}</td>
+        <td>{{ char.score | grade }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app', [])
+
+    app.controller('MainController', function ($filter) {
+      this.characters = [
+        {
+          name: 'Harry',
+          score: 7
+        },
+        {
+          name: 'Ron',
+          score: 5
+        },
+        {
+          name: 'Hermione',
+          score: 9
+        }
+      ]
+
+      var notaTexto = $filter('grade')(9)
+
+      window.alert(notaTexto)
+
+
+    })
+
+    app.filter('grade', function () {
+      return function (input) {
+        if (input < 5) {
+          return 'Suspenso'
+        } else if (input >= 5 && input < 7) {
+          return 'Suficiente'
+        } else if (input >= 7 && input < 9) {
+          return 'Notable'
+        } else {
+          return 'Sobresaliente'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

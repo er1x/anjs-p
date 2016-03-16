@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="miApp">
+
+  <div ng-controller="miControlador as vm">
+
+    {{ vm.nombre }}
+    {{ vm.otroAtributo }}
+
+  </div>
+
+
+  <script src="angular.min.js"></script>
+  <script>
+    angular
+      .module('miApp', [])
+      .controller('miControlador', function () {
+        this.nombre = 'Carlos'
+        this.otroAtributo = 'García'
+      })
+  </script>
+</body>
+</html>

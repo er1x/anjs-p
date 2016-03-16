@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+
+  <div class="padre" ng-controller="PadreController as padre">
+    {{ padre.nombre }}
+    <div class="hijo" ng-controller="HijoController as hijo">
+      {{ hijo.nombre }}
+    </div>
+  </div>
+
+
+
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app', [])
+
+    app.controller('PadreController', function() {
+      this.nombre = 'Padre'
+    })
+    app.controller('HijoController', function() {
+      this.nombre = 'Hijo'
+    })
+  </script>
+</body>
+</html>

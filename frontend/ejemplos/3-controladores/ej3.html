@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body ng-app="app">
+  <div ng-controller="MainController as main">
+
+    <p ng-class="main.textRed ? 'text-red' : '' ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores fugiat ut ullam perferendis, possimus numquam error id cum exercitationem minima tempora ea repudiandae inventore, eveniet laboriosam hic debitis vitae saepe.</p>
+
+
+    <button ng-click="main.toggleClass()">Haz click!</button>
+  </div>
+  <!-------------------------------->
+  <script src="angular.min.js"></script>
+  <script>
+    var app = angular.module('app', [])
+
+    app.controller('MainController', MainController)
+
+    function MainController() {
+      var main = this
+
+      main.textRed = false
+      main.toggleClass = function () {
+        main.textRed = !main.textRed
+      }
+    }
+  </script>
+</body>
+</html>

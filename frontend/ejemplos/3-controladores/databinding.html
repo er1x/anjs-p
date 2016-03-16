@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+
+<div ng-controller="MainController as main">
+  <form>
+    <input type="text" ng-model="main.user.username">
+    <input type="password" ng-model="main.user.password">
+    <button ng-click="main.enviar()">Enviar contenido</button>
+  </form>
+  <pre>
+    {{ main.user | json }}
+  </pre>
+</div>
+
+  <script src="angular.min.js"></script>
+  <script>
+    window.angular
+          .module('app', [])
+          .controller('MainController', function (){
+            var vm = this
+
+            vm.user = {
+              username: '',
+              password: ''
+            }
+
+            vm.enviar = function () {
+              console.log('enviando...', JSON.stringify(vm.user))
+            }
+
+
+          })
+  </script>
+</body>
+</html>
