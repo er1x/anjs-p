@@ -20,8 +20,12 @@
     }
 
     vm.send = function () {
-      console.log('enviando al backend...')
-      console.log(JSON.stringify(vm.worker))
+      if (vm.newWorkerForm.$invalid) {
+        console.log('no hacemos nada...')
+      } else {
+        console.log('enviando al backend...')
+        console.log(JSON.stringify(vm.worker))
+      }
     }
 
     vm.fileChange = function (el) {
