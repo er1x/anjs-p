@@ -9,9 +9,13 @@ app.use(bodyParser.json())
 var workers = require('./workers.json')
 
 app.get('/workers', function (req, res) {
-  var page = req.query.page || 0
+  // throw Exception('asdasd')
+  var page = (req.query.page - 1) || 0
   var pageSize = 10
-  res.json(workers.slice(page * pageSize, (page * pageSize) + pageSize))
+  res.json({
+    totalPages: Math.ceil(workers.length),
+    workers: workers.slice(page * pageSize, (page * pageSize) + pageSize)
+  })
 })
 
 app.post('/workers/add', function (req, res) {

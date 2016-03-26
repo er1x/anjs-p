@@ -5,26 +5,25 @@
         .module('app')
         .controller('ListController', controller)
 
-  function controller (workers) {
+  function controller (workers, $scope) {
     var vm = this
 
     vm.currentPage = 1
+    vm.totalPages = 0
     vm.workers = []
 
-    workers.list(function (err, workers) {
-      if (err) {
-        console.log(err)
-      }
-      vm.workers = workers
-    })
-
-    vm.pageChanged = function () {
-      console.log('cambio de página...')
+    function listWorkers () {
+      workers.list(vm.currentPage, function (err, data) {
+        if (err) {
+          console.log(err)
+        }
+        vm.totalPages = data.totalPages
+        vm.workers = data.workers
+      })
     }
 
-    vm.getWorkers = function () {
-      return vm.workers.slice((vm.currentPage - 1) * 10, ((vm.currentPage - 1) * 10) + 10)
-    }
+    vm.pageChanged = listWorkers
+    listWorkers()
   }
 
   controller.$inject = ['workers']
