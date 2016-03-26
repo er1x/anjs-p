@@ -9,7 +9,20 @@ app.use(bodyParser.json())
 var workers = require('./workers.json')
 
 app.get('/workers', function (req, res) {
-  res.json(workers)
+  var page = req.query.page || 0
+  var pageSize = 10
+  res.json(workers.slice(page * pageSize, (page * pageSize) + pageSize))
+})
+
+app.post('/workers/add', function (req, res) {
+  var worker = req.body
+  workers.push({
+    code: parseInt((Math.random(0, 1000) * 1000), 0),
+    name: worker.name,
+    job: worker.job,
+    date: (new Date()).toISOString()
+  })
+  res.sendStatus(201)
 })
 
 app.listen(3000, function () {
