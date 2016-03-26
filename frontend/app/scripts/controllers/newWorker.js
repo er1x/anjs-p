@@ -5,7 +5,7 @@
         .module('app')
         .controller('NewWorkerController', controller)
 
-  function controller () {
+  function controller (workers) {
     var vm = this
 
     vm.worker = {
@@ -23,8 +23,13 @@
       if (vm.newWorkerForm.$invalid) {
         console.log('no hacemos nada...')
       } else {
-        console.log('enviando al backend...')
-        console.log(JSON.stringify(vm.worker))
+        workers.add(vm.worker, function (err, response) {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log('trabajador añadido correctamente')
+          }
+        })
       }
     }
 

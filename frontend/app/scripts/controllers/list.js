@@ -9,7 +9,7 @@
     var vm = this
 
     vm.currentPage = 1
-    vm.totalPages = 0
+    vm.totalWorkers = 0
     vm.workers = []
 
     function listWorkers () {
@@ -17,7 +17,7 @@
         if (err) {
           console.log(err)
         }
-        vm.totalPages = data.totalPages
+        vm.totalWorkers = data.totalWorkers
         vm.workers = data.workers
       })
     }

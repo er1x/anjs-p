@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="worker in vm.getWorkers()">
+            <tr ng-repeat="worker in vm.workers">
               <td>{{ worker.code }}</td>
               <td>{{ worker.name }}</td>
               <td>{{ worker.job }}</td>
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
       <div class="col-lg-4 col-lg-offset-4">
-        <uib-pagination total-items="vm.workers.length" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+        <uib-pagination total-items="vm.totalWorkers" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
       </div>
     </div>
   </div>

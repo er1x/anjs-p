@@ -13,7 +13,7 @@ app.get('/workers', function (req, res) {
   var page = (req.query.page - 1) || 0
   var pageSize = 10
   res.json({
-    totalPages: Math.ceil(workers.length),
+    totalWorkers: Math.ceil(workers.length),
     workers: workers.slice(page * pageSize, (page * pageSize) + pageSize)
   })
 })

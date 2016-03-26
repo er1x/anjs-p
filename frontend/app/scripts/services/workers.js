@@ -14,6 +14,14 @@
              }, function (response) {
                callback(response.statusText, null)
              })
+      },
+      add: function (worker, callback) {
+        $http.post('http://localhost:3000/workers/add', worker)
+             .then(function (response) {
+               callback(null, response.data)
+             }, function (response) {
+               callback(response.statusText, null)
+             })
       }
     }
   }
