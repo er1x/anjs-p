@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body ng-app="app">
+
+  <div ng-controller="GokuController as goku" class="goku">
+    <p>Goku</p> <button ng-click="goku.emit()">Emit</button> <button ng-click="goku.broadcast()">Broadcast</button>
+    <div ng-controller="GohanController as gohan" class="gohan">
+      <p>Gohan</p> <button ng-click="gohan.emit()">Emit</button> <button ng-click="gohan.broadcast()">Broadcast</button>
+      <div ng-controller="PanController as pan" class="pan">
+        <p>Pan</p> <button ng-click="pan.emit()">Emit</button> <button ng-click="pan.broadcast()">Broadcast</button>
+      </div>
+    </div>
+    <div ng-controller="GotenController as goten" class="goten">
+      <p>Goten</p> <button ng-click="goten.emit()">Emit</button> <button ng-click="goten.broadcast()">Broadcast</button>
+    </div>
+  </div>
+
+  <script src="angular.min.js"></script>
+  <script>
+    angular.module('app', [])
+           .controller('GokuController', GokuController)
+           .controller('GohanController', GohanController)
+           .controller('GotenController', GotenController)
+           .controller('PanController', PanController)
+
+      function GokuController ($scope) {
+        this.emit = function () {
+          $scope.$emit('evento')
+        }
+        this.broadcast = function () {
+          $scope.$broadcast('evento')
+        }
+
+        $scope.$on('evento', function () {
+          blink('.goku')
+        })
+      }
+      function GohanController ($scope) {
+        this.emit = function () {
+          $scope.$emit('evento')
+        }
+        this.broadcast = function () {
+          $scope.$broadcast('evento')
+        }
+
+        $scope.$on('evento', function () {
+          blink('.gohan')
+        })
+      }
+      function GotenController ($scope) {
+        this.emit = function () {
+          $scope.$emit('evento')
+        }
+        this.broadcast = function () {
+          $scope.$broadcast('evento')
+        }
+
+        $scope.$on('evento', function () {
+          blink('.goten')
+        })
+      }
+      function PanController ($scope) {
+        this.emit = function () {
+          $scope.$emit('evento')
+        }
+        this.broadcast = function () {
+          $scope.$broadcast('evento')
+        }
+
+        $scope.$on('evento', function () {
+          blink('.pan')
+        })
+      }
+
+      function blink (selector) {
+        document.querySelector(selector).classList.toggle('message')
+        setTimeout(function() {
+          document.querySelector(selector).classList.toggle('message')
+        }, 1000);
+      }
+
+      GokuController.$inject = ['$scope']
+      GohanController.$inject = ['$scope']
+      GotenController.$inject = ['$scope']
+      PanController.$inject = ['$scope']
+  </script>
+</body>
+</html>

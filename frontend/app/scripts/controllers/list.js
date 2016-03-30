@@ -13,13 +13,9 @@
     vm.workers = []
 
     function listWorkers () {
-      workers.list(vm.currentPage, function (err, data) {
-        if (err) {
-          console.log(err)
-        }
-        vm.totalWorkers = data.totalWorkers
-        vm.workers = data.workers
-      })
+      workers.list({page: vm.currentPage}, function (res) {
+               console.log(res)
+             })
     }
 
     vm.pageChanged = listWorkers

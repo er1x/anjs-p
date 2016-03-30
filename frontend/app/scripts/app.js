@@ -4,6 +4,7 @@
   window.angular
         .module('app', [
           'ui.bootstrap',
+          'ngResource',
           'ngMessages'
         ])
 }())
