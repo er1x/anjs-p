@@ -20,6 +20,10 @@
         url: '/addworker',
         templateUrl: 'templates/add-worker.html'
       })
+      .state('viewWorker', {
+        url: '/viewworker/:id',
+        templateUrl: 'templates/view-worker.html'
+      })
     $urlRouterProvider.otherwise('/list')
   }
 

@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+var _ = require('lodash')
 
 var app = express()
 app.use(cors())
@@ -21,12 +22,20 @@ app.get('/workers', function (req, res) {
 app.post('/workers/add', function (req, res) {
   var worker = req.body
   workers.push({
-    code: parseInt((Math.random(0, 1000) * 1000), 0),
+    code: (parseInt((Math.random(0, 1000) * 1000), 0)).toString(),
     name: worker.name,
     job: worker.job,
-    date: (new Date()).toISOString()
+    date: (new Date()).toISOString(),
+    surname: worker.surname || '',
+    department: worker.department || '',
+    salary: worker.salary || '',
+    photo: worker.photo || ''
   })
   res.sendStatus(201)
+})
+
+app.get('/workers/:id', function (req, res) {
+  res.json(_.find(workers, {code: req.params.id}))
 })
 
 app.listen(3000, function () {

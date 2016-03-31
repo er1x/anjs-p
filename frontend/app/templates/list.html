@@ -14,7 +14,7 @@
           <tbody>
             <tr ng-repeat="worker in vm.workers">
               <td>{{ worker.code }}</td>
-              <td>{{ worker.name }}</td>
+              <td><a ui-sref="viewWorker({id: worker.code})">{{ worker.name }} {{ worker.surname }}</a></td>
               <td>{{ worker.job }}</td>
               <td>{{ worker.date | date}}</td>
             </tr>
