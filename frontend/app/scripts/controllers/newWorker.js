@@ -23,13 +23,13 @@
       if (vm.newWorkerForm.$invalid) {
         console.log('no hacemos nada...')
       } else {
-        workers.add(vm.worker, function (err, response) {
-          if (err) {
-            console.log(err)
-          } else {
+        workers
+          .add(vm.worker)
+          .then(function (response) {
             console.log('trabajador añadido correctamente')
-          }
-        })
+          }, function (response) {
+            console.log(response)
+          })
       }
     }
 

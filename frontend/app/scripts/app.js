@@ -6,27 +6,40 @@
           'ui.bootstrap',
           'ngResource',
           'ngMessages',
-          'ui.router'
+          'ui.router',
+          'angular-loading-bar'
         ])
         .config(configure)
 
-  function configure ($stateProvider, $urlRouterProvider, $locationProvider) {
+  function configure ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('list', {
         url: '/list',
-        templateUrl: 'templates/list.html'
+        templateUrl: 'templates/list.html',
+        controller: 'ListController as vm',
+        resolve: {
+          initialListResponse: function (workers) {
+            return workers.list(1)
+          }
+        }
       })
       .state('addWorker', {
         url: '/addworker',
-        templateUrl: 'templates/add-worker.html'
+        templateUrl: 'templates/add-worker.html',
+        controller: 'NewWorkerController as vm'
       })
       .state('viewWorker', {
         url: '/viewworker/:id',
-        templateUrl: 'templates/view-worker.html'
+        templateUrl: 'templates/view-worker.html',
+        controller: 'ViewWorkerController as vm',
+        resolve: {
+          workerDataResponse: function (workers, $stateParams) {
+            return workers.get($stateParams.id)
+          }
+        }
       })
     $urlRouterProvider.otherwise('/list')
-    $locationProvider.html5Mode(true)
   }
 
-  configure.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
+  configure.$inject = ['$stateProvider', '$urlRouterProvider']
 }())

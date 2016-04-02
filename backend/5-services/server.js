@@ -35,7 +35,9 @@ app.post('/workers/add', function (req, res) {
 })
 
 app.get('/workers/:id', function (req, res) {
-  res.json(_.find(workers, {code: req.params.id}))
+  setTimeout(function () {
+    res.json(_.find(workers, {code: req.params.id}))
+  }, 2000)
 })
 
 app.listen(3000, function () {

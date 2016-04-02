@@ -5,26 +5,26 @@
         .module('app')
         .controller('ListController', controller)
 
-  function controller (workers, $scope) {
+  function controller (workers, initialListResponse) {
     var vm = this
 
     vm.currentPage = 1
-    vm.totalWorkers = 0
-    vm.workers = []
+    vm.totalWorkers = initialListResponse.data.totalWorkers
+    vm.workers = initialListResponse.data.workers
 
     function listWorkers () {
-      workers.list(vm.currentPage, function (err, data) {
-        if (err) {
-          console.log(err)
-        }
-        vm.totalWorkers = data.totalWorkers
-        vm.workers = data.workers
-      })
+      workers
+        .list(vm.currentPage)
+        .then(function (response) {
+          vm.totalWorkers = response.data.totalWorkers
+          vm.workers = response.data.workers
+        }, function (response) {
+          console.log(response.data)
+        })
     }
 
     vm.pageChanged = listWorkers
-    listWorkers()
   }
 
-  controller.$inject = ['workers']
+  controller.$inject = ['workers', 'initialListResponse']
 }())

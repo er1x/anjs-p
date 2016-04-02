@@ -1,0 +1,17 @@
+.view-worker .panel-primary .label-primary {
+  margin-right: 0.5rem;
+}
+
+#loading-bar .bar {
+  background-color: #d62c1a;
+  margin-top: 60px;
+}
+
+#loading-bar-spinner {
+  top: 80px;
+}
+
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #d62c1a;
+  border-left-color: #d62c1a;
+}
