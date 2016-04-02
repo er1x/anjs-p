@@ -10,7 +10,7 @@
         ])
         .config(configure)
 
-  function configure ($stateProvider, $urlRouterProvider) {
+  function configure ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
       .state('list', {
         url: '/list',
@@ -25,7 +25,8 @@
         templateUrl: 'templates/view-worker.html'
       })
     $urlRouterProvider.otherwise('/list')
+    $locationProvider.html5Mode(true)
   }
 
-  configure.$inject = ['$stateProvider', '$urlRouterProvider']
+  configure.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
 }())
