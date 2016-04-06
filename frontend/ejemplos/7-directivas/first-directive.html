@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+
+  <my-first-directive data-info="myinfo"></my-first-directive>
+
+  <script src="angular.min.js"></script>
+  <script>
+    var module = angular.module('app', []);
+
+    module.directive('myFirstDirective', directive)
+
+    function directive () {
+      return {
+        restrict: 'E',
+        templateUrl: 'template.html',
+        controller: controller,
+        link: link,
+        controllerAs: 'vm'
+      }
+    }
+
+    function controller () { // executes first
+      var vm = this
+      vm.sayHi = function () {
+        alert('hola!!!')
+      }
+    }
+
+    function link (scope, element, attrs, controller) { // executes later
+      controller.sayHi()
+      element.css('color', 'red')
+      console.log(attrs.info)
+    }
+
+  </script>
+</body>
+</html>
