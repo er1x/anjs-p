@@ -1,0 +1,15 @@
+.window__wrapper {
+  width: 250px;
+  border: 1px solid black;
+  min-height: 250px;
+}
+
+.window__header {
+  height: 35px;
+  background-color: black;
+}
+
+.window__body {
+  padding: 5px;
+  font-size: 1.2rem;
+}

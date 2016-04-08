@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="app">
+
+  <window-directive>
+    <p>Hola!</p>
+  </window-directive>
+  <window-directive>
+    <p>Adios!</p>
+  </window-directive>
+  <window-directive>
+    <p>Pepe</p>
+  </window-directive>
+  <window-directive>
+    <p>12345</p>
+  </window-directive>
+
+  <script src="angular.min.js"></script>
+  <script>
+    var module = angular.module('app', [])
+
+    module.directive('windowDirective', function () {
+      return {
+        restrict: 'E',
+        templateUrl: 'windowTemplate.html',
+        transclude: true
+      }
+    })
+  </script>
+</body>
+</html>

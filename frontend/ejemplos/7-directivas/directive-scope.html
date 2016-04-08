@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body ng-app="app">
+
+  <div ng-controller="MainController as main">
+    <sample-directive name="Carlos"></sample-directive>
+    <sample-directive name="Juan"></sample-directive>
+    <sample-directive name="María"></sample-directive>
+    <sample-directive name="Ana"></sample-directive>
+  </div>
+
+  <script src="angular.min.js"></script>
+  <script>
+    var module = angular.module('app', [])
+
+    module.controller('MainController', function () {
+      var main = this
+      main.name = 'Carlos'
+    })
+
+    module.directive('sampleDirective', function () {
+      return {
+        restrict: 'E',
+        template: '{{ vm.name }}',
+        scope: {
+          name: '@'
+        },
+        bindToController: true,
+        controllerAs: 'vm',
+        controller: function () {
+          var vm = this
+        }
+      }
+    })
+  </script>
+</body>
+</html>
