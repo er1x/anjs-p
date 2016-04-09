@@ -8,6 +8,10 @@ app.use(cors())
 app.use(bodyParser.json())
 
 var workers = require('./workers.json')
+var sells = {
+  current: 75000,
+  target: 200000
+}
 
 app.get('/workers', function (req, res) {
   // throw Exception('asdasd')
@@ -40,6 +44,14 @@ app.get('/workers/:id', function (req, res) {
   }, 2000)
 })
 
+app.get('/sells', function (req, res) {
+  res.json(sells)
+})
+
 app.listen(3000, function () {
   console.log('Escuchando en localhost:3000')
 })
+
+setInterval(function () {
+  sells.current += 10
+}, 30000)
