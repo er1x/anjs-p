@@ -5,10 +5,10 @@
         .module('app')
         .controller('ViewWorkerController', controller)
 
-  function controller (workers, workerDataResponse) {
+  function controller (workerDataResponse) {
     var vm = this
     vm.worker = workerDataResponse.data
   }
 
-  controller.$inject = ['workers', 'workerDataResponse']
+  controller.$inject = ['workerDataResponse']
 }())
