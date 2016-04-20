@@ -26,7 +26,8 @@ module.exports = function(config) {
       'lib/sinon.min.js',
       'lib/ui-bootstrap-tpls.js',
       'app/scripts/**/*.js',
-      'test/**/*.js'
+      'test/**/*.js',
+      'app/templates/*.html'
     ],
 
 
@@ -38,8 +39,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      '**/*.html': ['ng-html2js']
     },
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/',
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
