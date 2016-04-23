@@ -26,7 +26,7 @@ module.exports = function(config) {
       'lib/sinon.min.js',
       'lib/ui-bootstrap-tpls.js',
       'app/scripts/**/*.js',
-      'test/**/*.js',
+      'test/unit/**/*.js',
       'app/templates/*.html'
     ],
 
