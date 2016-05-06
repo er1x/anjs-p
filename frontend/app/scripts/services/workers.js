@@ -5,19 +5,19 @@
         .module('app')
         .factory('workers', factory)
 
-  function factory ($http) {
+  function factory ($http, cfg) {
     return {
       list: function (page) {
-        return $http.get('http://localhost:3000/workers?page=' + page)
+        return $http.get(cfg.backendUrl + '/workers?page=' + page)
       },
       add: function (worker) {
-        return $http.post('http://localhost:3000/workers/add', worker)
+        return $http.post(cfg.backendUrl + '/workers/add', worker)
       },
       get: function (workerId) {
-        return $http.get('http://localhost:3000/workers/' + workerId)
+        return $http.get(cfg.backendUrl + '/workers/' + workerId)
       }
     }
   }
 
-  factory.$inject = ['$http']
+  factory.$inject = ['$http', 'cfg']
 }())

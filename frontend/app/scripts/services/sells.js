@@ -5,14 +5,14 @@
         .module('app')
         .factory('sells', factory)
 
-  function factory ($http, $interval) {
+  function factory ($http, $interval, cfg) {
     var sells = {
     }
     refreshSells()
     $interval(refreshSells, 5000)
 
     function refreshSells () {
-      $http.get('http://localhost:3000/sells')
+      $http.get(cfg.backendUrl + '/sells')
            .then(function (response) {
              sells.current = response.data.current
              sells.target = response.data.target
@@ -25,5 +25,5 @@
     }
   }
 
-  factory.$inject = ['$http', '$interval']
+  factory.$inject = ['$http', '$interval', 'cfg']
 }())

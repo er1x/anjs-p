@@ -10,9 +10,12 @@
           'angular-loading-bar',
           'satellizer'
         ])
+        .constant('cfg', {
+          backendUrl: 'http://localhost:3000'
+        })
         .config(configure)
 
-  function configure ($stateProvider, $urlRouterProvider, $authProvider) {
+  function configure ($stateProvider, $urlRouterProvider, $authProvider, cfg) {
     $stateProvider
       .state('list', {
         url: '/list',
@@ -52,7 +55,7 @@
     $urlRouterProvider.otherwise('/list')
 
     // Auth configuration
-    $authProvider.baseUrl = 'http://localhost:3000'
+    $authProvider.baseUrl = cfg.backendUrl
     $authProvider.loginUrl = '/login'
     $authProvider.tokenName = 'token'
   }
@@ -67,6 +70,6 @@
     return deferred.promise
   }
 
-  configure.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider']
+  configure.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'cfg']
   loginRequired.$inject = ['$q', '$auth', '$location']
 }())
