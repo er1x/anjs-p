@@ -25,6 +25,10 @@
           loginRequired: loginRequired,
           initialListResponse: function (workers) {
             return workers.list(1)
+                          .catch(function (err) {
+                            console.log(err)
+                            return null
+                          })
           }
         }
       })
@@ -44,6 +48,10 @@
           loginRequired: loginRequired,
           workerDataResponse: function (workers, $stateParams) {
             return workers.get($stateParams.id)
+                          .catch(function (err) {
+                            console.log(err)
+                            return null
+                          })
           }
         }
       })

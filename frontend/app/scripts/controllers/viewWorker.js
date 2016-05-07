@@ -7,6 +7,10 @@
 
   function controller (workerDataResponse) {
     var vm = this
+    if (!workerDataResponse) {
+      vm.error = true
+      return
+    }
     vm.worker = workerDataResponse.data
   }
 

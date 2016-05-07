@@ -8,6 +8,11 @@
   function controller (workers, initialListResponse) {
     var vm = this
 
+    if (!initialListResponse) {
+      vm.error = true
+      return
+    }
+
     vm.currentPage = 1
     vm.totalWorkers = initialListResponse.data.totalWorkers
     vm.workers = initialListResponse.data.workers
